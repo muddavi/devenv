@@ -94,7 +94,7 @@ def main():
     copy_colors(bundle_dir, colors_dir)
 
     # Create ftplugins
-    create_ftplugin(ftplugin_dir)
+    create_ftplugins(ftplugin_dir)
 
 if __name__ == '__main__':
     main()
