@@ -73,7 +73,8 @@ setopt prompt_subst
 # Prompt (on left side) similar to default bash prompt, or redhat zsh prompt with colors
  #PROMPT="%(!.%{$fg[red]%}[%n@%m %1~]%{$reset_color%}# .%{$fg[green]%}[%n@%m %1~]%{$reset_color%}$ "
 # Maia prompt
-PROMPT="%B%{$fg[cyan]%}%(4~|%-1~/.../%2~|%~)%u%b >%{$fg[cyan]%}>%B%(?.%{$fg[cyan]%}.%{$fg[red]%})>%{$reset_color%}%b " # Print some system information when the shell is first started
+COLOR_DIR=$'\e[38;5;197m'
+PROMPT="%B%{${COLOR_DIR}%}%(4~|%-1~/.../%2~|%~)%u%b >%{$fg[cyan]%}>%B%(?.%{$fg[cyan]%}.%{$fg[red]%})>%{$reset_color%}%b " # Print some system information when the shell is first started
 # Print a greeting message when shell is started
 # echo $USER@$HOST  $(uname -srm) $(lsb_release -rcs)
 ## Prompt on right side:
@@ -168,11 +169,12 @@ bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
 # Apply different settigns for different terminals
-#case $(basename "$(cat "/proc/$PPID/comm")") in
-#  login)
-#    	RPROMPT="%{$fg[red]%} %(?..[%?])" 
-#    	alias x='startx ~/.xinitrc'      # Type name of desired desktop after x, xinitrc is configured for it
-#    ;;
+# case $(basename "$(cat "/proc/$PPID/comm")") in
+# case $(basename "$(cat "/proc/$PPID/comm")") in
+#   login)
+#     	RPROMPT="%{$fg[red]%} %(?..[%?])" 
+#     	alias x='startx ~/.xinitrc'      # Type name of desired desktop after x, xinitrc is configured for it
+#     ;;
 ##  'tmux: server')
 ##        RPROMPT='$(git_prompt_string)'
 ##		## Base16 Shell color themes.
@@ -192,11 +194,11 @@ bindkey '^[[B' history-substring-search-down
 ##  		ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
 ##     ;;
 #  *)
-#        RPROMPT='$(git_prompt_string)'
-#		# Use autosuggestion
-#		source /usr/local/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-#		ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
-#  		ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
+RPROMPT='$(git_prompt_string)'
+# Use autosuggestion
+source /usr/local/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
 #    ;;
 #esac
 
@@ -205,10 +207,3 @@ export LSCOLORS=GxFxCxDxBxegedabagaced
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
 
-# Set prompt to show git repo branch
-COLOR_DEF=$'\e[0m'
-COLOR_USR=$'\e[38;5;243m'
-COLOR_DIR=$'\e[38;5;197m'
-COLOR_GIT=$'\e[38;5;39m'
-setopt PROMPT_SUBST
-export PROMPT='${COLOR_USR}%n ${COLOR_DIR}%~ ${COLOR_GIT}$(parse_git_branch)${COLOR_DEF} >%{$fg[cyan]%}>%B%(?.%{$fg[cyan]%}.%{$fg[red]%})>%{$reset_color%}%b '
