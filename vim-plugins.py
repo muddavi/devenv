@@ -49,6 +49,7 @@ def copy_colors(bundle_path, color_path):
 
 def create_ftplugins(path):
     '''
+    Create the c and cpp vim plugin files.
     '''
 
     contents = '''
