@@ -41,10 +41,10 @@ def copy_colors(bundle_path, color_path):
 
     color_files = []
     for d in dirs:
-        color_files += [f for f in os.listdir(d) if f.endswith('.vim')]
+        color_files += [os.path.join(d, f) for f in os.listdir(d) if f.endswith('.vim')]
 
     for f in color_files:
-        shutil.copy(os.path.join(bundle_path, f), os.path.join(color_path, f))
+        shutil.copy(f, os.path.join(color_path, f.split('/')[-1]))
 
 
 def create_ftplugins(path):
