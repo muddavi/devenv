@@ -1,4 +1,4 @@
-# Development enviornment in Ubuntu 22.10 image
+# Development enviornment in Ubuntu image
 
 # Setup directory
 FROM ubuntu:latest
